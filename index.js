@@ -3,12 +3,13 @@ const app = express();
 const router = require('./routes/siteRoutes');
 const path = require('path');
 const public = path.join(__dirname,'public');
-app.use(express.static(public));
 
 const mustache = require('mustache-express');
-
 app.engine('mustache', mustache());
 app.set('view engine', 'mustache');
+app.set('views', path.join(__dirname, 'views'));
+
+app.use(express.static(public));
 
 app.use('/', router);
 
