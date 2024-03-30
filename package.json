@@ -1,0 +1,17 @@
+{
+  "name": "cw2webdev",
+  "version": "1.0.0",
+  "description": "Coursework 2 Web Development Pantry Scotland",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "gray-nedb": "^1.8.3",
+    "mustache-express": "^1.3.2",
+    "path": "^0.12.7"
+  }
+}
