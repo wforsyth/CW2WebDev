@@ -1,0 +1,31 @@
+<html>
+    <head>
+        {{>header}}
+    <link rel="stylesheet" href="/css/login.css">
+    </head>
+    <body>
+    <div class="container center-content">
+        <div class="row justify-content-center form-content">
+            <div class="col-md-6">
+                <h1 class="text-center">{{title}}</h1>
+                <h2 class="text-center">Sign In</h2>
+                <div id="formContent">
+                    <!-- Login Form -->
+                    <form method="POST" action="/login">
+                        <div class="form-group">
+                            <label for="username">User Name</label>
+                            <input type="text" class="form-control" id="username" name="username" placeholder="Username">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                    </form>
+                </div>
+                <p>Don't have an Account yet? <a href="/register">Register</a> here.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

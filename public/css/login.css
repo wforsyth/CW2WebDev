@@ -1,0 +1,14 @@
+body{
+    background-color: #3a5f5e;
+}
+
+.center-content{
+    width: 8in;
+    background-color: #3a5f5e;
+}
+
+.form-content{
+    border: solid black 1px;
+    margin-top: 1in;
+    border-radius: 10px;
+}

@@ -6,3 +6,9 @@ exports.landing_page = function (req, res) {
         imageUrl2: path.join('img', 'TSPN_logo_enhanced.png')
     });
 };
+
+exports.show_login_page = function (req, res){
+    res.render('user/login',{
+        imageUrl: path.join('img', 'pantryLogo.jpg'),
+    });
+};
