@@ -12,3 +12,9 @@ exports.show_login_page = function (req, res){
         imageUrl: path.join('img', 'pantryLogo.jpg'),
     });
 };
+
+exports.show_register_page = function (req, res){
+    res.render('user/register',{
+        imageUrl: path.join('img', 'pantryLogo.jpg'),
+    });
+};
