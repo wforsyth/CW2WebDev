@@ -10,7 +10,7 @@
                 <h1 class="text-center">{{title}}</h1>
                 <h2 class="text-center">Register</h2>
                 <div id="formContent">
-                    <form method="POST" action="/register">
+                    <form method="POST" role="/register">
                         <div class="form-group">
                             <label for="username">User Name</label>
                             <input type="text" class="form-control" id="username" name="username" placeholder="Username">
@@ -23,6 +23,9 @@
                             <label for="confirmPassword">Confirm Password</label>
                             <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password">
                         </div>
+                        {{#errorMessage}}
+                            <p>{{errorMessage}}</p>
+                        {{/errorMessage}}
                         <button type="submit" class="btn btn-primary btn-block">Register</button>
                     </form>
                 </div>
