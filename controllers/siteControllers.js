@@ -37,12 +37,10 @@ exports.register_user = function (req, res){
         res.status(401).send('Username or password fields cannot be empty');
         return
     }
-
     if(password != confirmPassword){
         res.render('register', {title: 'User Registration', errorMessage: 'Passwords do not match'});
         return;
     }
-
     userDao.lookup(user, function (err, u){
         if(u){
             res.status(401).send('User already exists');
@@ -54,4 +52,12 @@ exports.register_user = function (req, res){
 
         res.redirect('/login');
     });
+}
+
+exports.handle_login = function(req, res){
+    res.render("home", {
+        user: "user",
+        imageUrl: path.join('img', 'pantryLogo.jpg'),
+        imageUrl2: path.join('img', 'TSPN_logo_enhanced.png')
+    });       
 }

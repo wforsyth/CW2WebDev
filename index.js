@@ -3,6 +3,9 @@ const app = express();
 const router = require('./routes/siteRoutes');
 const path = require('path');
 const public = path.join(__dirname,'public');
+require('dotenv').config()
+const cookieParser = require('cookie-parser') 
+app.use(cookieParser())
 
 const mustache = require('mustache-express');
 app.engine('mustache', mustache());
