@@ -1,5 +1,6 @@
 const path = require('path')
 const userDao = require('../models/userModel.js');
+const auth = require("../auth/auth.js")
 
 
 //Methods for showing new mustache templates
@@ -55,8 +56,9 @@ exports.register_user = function (req, res){
 }
 
 exports.handle_login = function(req, res){
+    const user = req.user;
     res.render("home", {
-        user: "user",
+        user: user,
         imageUrl: path.join('img', 'pantryLogo.jpg'),
         imageUrl2: path.join('img', 'TSPN_logo_enhanced.png')
     });       

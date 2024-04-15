@@ -20,6 +20,7 @@ exports.login = function (req, res, next) {
                 let payload = { username: user.username }; let accessToken =
                     jwt.sign(payload, process.env.ACCESS_TOKEN_USER);
                 res.cookie("jwt", accessToken);
+            
                 //and then pass onto the next middleware
                 next();
             } else {
