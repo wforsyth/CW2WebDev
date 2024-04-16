@@ -17,9 +17,12 @@ exports.login = function (req, res, next) {
         //compare provided password with stored password
         bcrypt.compare(password, user.password, function (err, result) {
             if (result) {
-                let payload = { username: user.username }; let accessToken =
-                    jwt.sign(payload, process.env.ACCESS_TOKEN_USER);
+                let payload = { user: user.user }; 
+                let accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_USER);
                 res.cookie("jwt", accessToken);
+
+                console.log("JWT token generated for user:", user)
+                console.log(payload);
             
                 //and then pass onto the next middleware
                 next();

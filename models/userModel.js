@@ -13,6 +13,14 @@ class UserDAO {
         }
     }
 
+    init(){
+        //user
+        this.db.insert({
+            user: 'test',
+            password: '$2b$10$I82WRFuGghOMjtu3LLZW9OAMrmYOlMZjEEkh.vx.K2MM05iu5hY2C'
+        })
+    }
+
     create(username, password){
         const that = this;
         bcrypt.hash(password, saltRounds).then(function(hash){
@@ -40,4 +48,5 @@ class UserDAO {
 }
 
 const dao = new UserDAO();
+dao.init();
 module.exports = dao;

@@ -56,8 +56,10 @@ exports.register_user = function (req, res){
 }
 
 exports.handle_login = function(req, res){
-    const user = req.user;
-    res.render("home", {
+
+    const user = req.user
+
+    res.render("user/userHome", {
         user: user,
         imageUrl: path.join('img', 'pantryLogo.jpg'),
         imageUrl2: path.join('img', 'TSPN_logo_enhanced.png')
