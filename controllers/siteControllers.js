@@ -23,6 +23,36 @@ exports.show_register_page = function (req, res){
     });
 };
 
+exports.show_donation_page = function (req, res){
+    res.render('donate',{
+        imageUrl: path.join('img', 'pantryLogo.jpg'),
+    });
+}
+
+exports.show_about_page = function (req, res){
+    res.render('aboutUs',{
+        imageUrl: path.join('img', 'pantryLogo.jpg'),
+        imageUrl2: path.join('img', 'TSPN_logo_enhanced.png')
+    });
+}
+
+exports.show_userabout_page = function (req, res){
+    const user = req.user;
+
+    res.render('user/userAbout',{
+        user: user,
+        imageUrl: path.join('img', 'pantryLogo.jpg'),
+        imageUrl2: path.join('img', 'TSPN_logo_enhanced.png')
+    });
+}
+
+exports.show_contact_page = function (req, res){
+    res.render('contactUs',{
+        imageUrl: path.join('img', 'pantryLogo.jpg'),
+        imageUrl2: path.join('img', 'TSPN_logo_enhanced.png')
+    });
+}
+
 //Methods for confirming user registration and login
 exports.register_user = function (req, res){
     if (!req.body || !req.body.username) {
@@ -57,7 +87,8 @@ exports.register_user = function (req, res){
 
 exports.handle_login = function(req, res){
 
-    const user = req.user
+    const user = req.user;
+    console.log(user.user);
 
     res.render("user/userHome", {
         user: user,

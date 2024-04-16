@@ -1,0 +1,27 @@
+<!-- about.mustache -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <!-- Include any necessary CSS stylesheets here -->
+</head>
+<body>
+    {{>header}}
+    {{>userNav}}
+
+    <div class="container-fluid">
+        <div class="row mt-4">
+            <div class="col-md-6 bg-secondary text-white">
+                <h2>About Us</h2>
+                <p>This is the about us page content.</p>
+                <!-- Add information about your organization or team here -->
+            </div>
+            <div class="col-md-6">
+                <img src="{{imageUrl2}}" class="img-fluid" alt="Image">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
