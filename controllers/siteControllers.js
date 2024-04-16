@@ -24,7 +24,10 @@ exports.show_register_page = function (req, res){
 };
 
 exports.show_donation_page = function (req, res){
+    const user = req.user;
+
     res.render('donate',{
+        user: user,
         imageUrl: path.join('img', 'pantryLogo.jpg'),
     });
 }
@@ -58,6 +61,16 @@ exports.show_usercontact_page = function (req, res){
 
 exports.show_contact_page = function (req, res){
     res.render('contactUs',{
+        imageUrl: path.join('img', 'pantryLogo.jpg'),
+        imageUrl2: path.join('img', 'TSPN_logo_enhanced.png')
+    });
+}
+
+exports.show_userhome = function (req, res){
+    const user = req.user;
+
+    res.render('user/userHome',{
+        user: user,
         imageUrl: path.join('img', 'pantryLogo.jpg'),
         imageUrl2: path.join('img', 'TSPN_logo_enhanced.png')
     });
