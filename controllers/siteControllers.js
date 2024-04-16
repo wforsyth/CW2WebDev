@@ -39,7 +39,17 @@ exports.show_about_page = function (req, res){
 exports.show_userabout_page = function (req, res){
     const user = req.user;
 
-    res.render('user/userAbout',{
+    res.render('aboutUs',{
+        user: user,
+        imageUrl: path.join('img', 'pantryLogo.jpg'),
+        imageUrl2: path.join('img', 'TSPN_logo_enhanced.png')
+    });
+}
+
+exports.show_usercontact_page = function (req, res){
+    const user = req.user;
+
+    res.render('contactUs',{
         user: user,
         imageUrl: path.join('img', 'pantryLogo.jpg'),
         imageUrl2: path.join('img', 'TSPN_logo_enhanced.png')
@@ -88,7 +98,6 @@ exports.register_user = function (req, res){
 exports.handle_login = function(req, res){
 
     const user = req.user;
-    console.log(user.user);
 
     res.render("user/userHome", {
         user: user,
@@ -96,3 +105,12 @@ exports.handle_login = function(req, res){
         imageUrl2: path.join('img', 'TSPN_logo_enhanced.png')
     });       
 }
+
+exports.logout = function (req, res) {
+    res
+        .clearCookie("jwt")
+        .status(200)
+        .redirect("/");
+}
+
+

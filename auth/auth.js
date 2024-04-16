@@ -17,7 +17,7 @@ exports.login = function (req, res, next) {
         //compare provided password with stored password
         bcrypt.compare(password, user.password, function (err, result) {
             if (result) {
-                let payload = { user: user.user }; 
+                let payload = { user: user }; 
                 let accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_USER);
                 res.cookie("jwt", accessToken);
 
@@ -43,7 +43,9 @@ exports.verify = function (req, res, next) {
     let payload;
     try {
         payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_USER);
+        console.log(payload.user);
 
+        req.user = payload.user;
         next();
     } catch (e) {
         //if an error occured return request unauthorized error

@@ -9,7 +9,12 @@
 </head>
 <body>
     {{>header}}
-    {{>navbar}}
+    {{#user}}
+        {{>userNav}}
+    {{/user}}
+    {{^user}}
+        {{>navbar}}
+    {{/user}}
 
     <div class="container-fluid">
         <div class="row mt-4">

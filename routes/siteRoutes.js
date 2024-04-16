@@ -11,9 +11,11 @@ router.get('/register', controller.show_register_page);
 router.get('/donate', controller.show_donation_page);
 router.get('/aboutUs', controller.show_about_page);
 router.get('/contactUs', controller.show_contact_page);
+router.get('/logout', verify, controller.logout);
 
 //calling functions to display user pages
 router.get('/userAbout', verify, controller.show_userabout_page);
+router.get('/userContact', verify, controller.show_usercontact_page);
 
 //Calling functions to authenticate user registration and login
 router.post('/register', controller.register_user);
