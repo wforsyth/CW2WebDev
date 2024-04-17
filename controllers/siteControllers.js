@@ -112,6 +112,7 @@ exports.handle_login = function (req, res) {
 
     const user = req.user;
     const pantry = req.pantry;
+    const admin = req.admin;
 
     if (user){
         res.render("user/userHome", {
@@ -122,6 +123,12 @@ exports.handle_login = function (req, res) {
     } else if (pantry){
         res.render("pantry/pantryHome", {
             pantry: pantry,
+            imageUrl: path.join('img', 'pantryLogo.jpg'),
+            imageUrl2: path.join('img', 'TSPN_logo_enhanced.png')
+        });
+    } else if (admin){
+        res.render("admin/adminHome", {
+            admin: admin,
             imageUrl: path.join('img', 'pantryLogo.jpg'),
             imageUrl2: path.join('img', 'TSPN_logo_enhanced.png')
         });

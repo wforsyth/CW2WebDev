@@ -2,7 +2,7 @@ const Datastore = require("gray-nedb");
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
-class PantryDAO {
+class AdminDAO {
     constructor(dbFilePath){
         if(dbFilePath){
             this.db = new Datastore({
@@ -15,24 +15,14 @@ class PantryDAO {
 
     init(){
         this.db.insert({
-            pantry: 'Govan',
-            password: '$2a$10$Aatm13fCUamDqcVsA0m2YOy1jFvQvGnaAxJHHBwtbrsSw5B40CObm',
-            location: 'Govan, Glasgow',
-            role: 'Pantry'
+            admin: 'Admin',
+            password: '$2a$10$hjqi3IJrApHs/pQbMeUisury9GJO.PpEdMBgL0rhNTQHM3V77ousq',
+            role: 'Admin'
         })
-
-        //pantry
-        this.db.insert({
-            pantry: 'Hillhead',
-            password: '$2a$10$V/hJq2jGHhLJR.4m89y8PuBKu.8C3BvZBo9P2CoHLaYtQvJebCmUm',
-            location: 'Hillhead, Glasgow',
-            role: 'Pantry'
-        })
-
     }
     
-    lookup(pantry, cb){
-        this.db.find({'pantry': pantry}, function (err, entries){
+    lookup(admin, cb){
+        this.db.find({'admin': admin}, function (err, entries){
             if (err){
                 return cb(null, null);
             } else {
@@ -44,6 +34,6 @@ class PantryDAO {
     }
 }
 
-const dao = new PantryDAO();
+const dao = new AdminDAO();
 dao.init();
 module.exports = dao;

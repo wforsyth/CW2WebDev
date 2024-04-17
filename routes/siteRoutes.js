@@ -2,7 +2,9 @@ const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/siteControllers.js');
 const pantryController = require('../controllers/pantryControllers.js');
+const adminController = require('../controllers/adminControllers.js');
 const {verifyPantry} = require('../auth/auth.js');
+const {verifyAdmin} = require('../auth/auth.js');
 const {login} = require('../auth/auth.js');
 const {verify} = require('../auth/auth.js');
 
@@ -17,6 +19,9 @@ router.get('/logout', verify, controller.logout);
 
 //Calling pantry functions 
 router.get('/pantryLogout', verifyPantry, pantryController.logout);
+
+//Calling admin functions
+router.get('/adminLogout', verifyAdmin, adminController.logout);
 
 //calling functions to display user pages
 router.get('/userAbout', verify, controller.show_userabout_page);

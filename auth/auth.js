@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
-const userModel = require('../models/userModel');
-const pantryModel = require('../models/pantryModel');
+const userModel = require('../models/userModel.js');
+const pantryModel = require('../models/pantryModel.js');
+const adminModel = require('../models/adminModel.js');
 const jwt = require("jsonwebtoken");
 
 exports.login = function (req, res, next) {
@@ -46,6 +47,28 @@ exports.login = function (req, res, next) {
                             next();
                         }
                     });
+                } else {
+                    adminModel.lookup(username, function (err, admin) {
+                        if (err) {
+                            console.log("error looking up admin", err);
+                            return res.status(401).send();
+                        } else if (admin) {
+                            bcrypt.compare(password, admin.password, function (err, result) {
+                                if (result) {
+                                    let payload = { admin: admin };
+                                    let accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_ADMIN);
+                                    res.cookie("jwt", accessToken);
+
+                                    console.log("JWT token generated for admin:", admin)
+                                    console.log(payload);
+
+                                    //and then pass onto the next middleware
+                                    req.admin = admin;
+                                    next();
+                                }
+                            });
+                        }
+                    });
                 }
             });
         }
@@ -82,6 +105,24 @@ exports.verifyPantry = function (req, res, next) {
         console.log(payload.pantry);
 
         req.pantry = payload.pantry;
+        next();
+    } catch (e) {
+        //if an error occured return request unauthorized error
+        res.status(401).send();
+    }
+};
+
+exports.verifyAdmin = function (req, res, next) {
+    let accessToken = req.cookies.jwt;
+    if (!accessToken) {
+        return res.status(403).send();
+    }
+    let payload;
+    try {
+        payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_ADMIN);
+        console.log(payload.admin);
+
+        req.admin = payload.admin;
         next();
     } catch (e) {
         //if an error occured return request unauthorized error
