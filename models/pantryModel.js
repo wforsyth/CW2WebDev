@@ -18,8 +18,15 @@ class PantryDAO {
         this.db.insert({
             pantry: 'GovanPantry',
             Location: 'Govan',
-            password: '81e814e9310fedee29a23d28c87d397cafec8db2'
-        })
+            password: '0f68f2eb2bd393ddb2db5d0ea80cfc01d26a5418',
+            role: 'Pantry'
+        }, (err, result) =>{
+            if (err){
+                console.log("Error inserting pantry information", err);
+            } else{
+                console.log("Pantry information insertedL", result)
+            }
+        });
     } 
     
     lookup(pantry, cb){
@@ -35,6 +42,6 @@ class PantryDAO {
     }
 }
 
-const dao = new UserDAO();
+const dao = new PantryDAO();
 dao.init();
 module.exports = dao;

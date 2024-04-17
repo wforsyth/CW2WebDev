@@ -17,14 +17,15 @@ class UserDAO {
         //user
         this.db.insert({
             user: 'test',
-            password: '$2b$10$I82WRFuGghOMjtu3LLZW9OAMrmYOlMZjEEkh.vx.K2MM05iu5hY2C'
+            password: '$2b$10$I82WRFuGghOMjtu3LLZW9OAMrmYOlMZjEEkh.vx.K2MM05iu5hY2C',
+            role: 'User'
         })
     }
 
-    create(username, password){
+    create(username, password, role){
         const that = this;
         bcrypt.hash(password, saltRounds).then(function(hash){
-            var entry = {user: username, password: hash,};
+            var entry = {user: username, password: hash, role: 'User'};
             that.db.insert(entry, function (err){
                 if (err){
                     console.log("Can't insert user: ", username);
