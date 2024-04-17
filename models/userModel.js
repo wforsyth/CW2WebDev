@@ -18,11 +18,12 @@ class UserDAO {
         this.db.insert({
             user: 'test',
             password: '$2b$10$I82WRFuGghOMjtu3LLZW9OAMrmYOlMZjEEkh.vx.K2MM05iu5hY2C',
+            location: 'Glasgow',
             role: 'User'
         })
     }
 
-    create(username, password, role){
+    create(username, password, role, location){
         const that = this;
         bcrypt.hash(password, saltRounds).then(function(hash){
             var entry = {user: username, password: hash, role: 'User'};

@@ -14,20 +14,22 @@ class PantryDAO {
     }
 
     init(){
-        //user
         this.db.insert({
-            pantry: 'GovanPantry',
-            Location: 'Govan',
-            password: '0f68f2eb2bd393ddb2db5d0ea80cfc01d26a5418',
+            pantry: 'Govan',
+            password: '$2b$10$I82WRFuGghOMjtu3LLZW9OAMrmYOlMZjEEkh.vx.K2MM05iu5hY2C',
+            location: 'Govan, Glasgow',
             role: 'Pantry'
-        }, (err, result) =>{
-            if (err){
-                console.log("Error inserting pantry information", err);
-            } else{
-                console.log("Pantry information insertedL", result)
-            }
-        });
-    } 
+        })
+
+        //pantry
+        this.db.insert({
+            pantry: 'Hillhead',
+            password: '$2b$10$I82WRFuGghOMjtu3LLZW9OAMrmYOlMZjEEkh.vx.K2MM05iu5hY2C',
+            location: 'Hillhead, Glasgow',
+            role: 'Pantry'
+        })
+
+    }
     
     lookup(pantry, cb){
         this.db.find({'pantry': pantry}, function (err, entries){

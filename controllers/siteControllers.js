@@ -113,13 +113,13 @@ exports.handle_login = function (req, res) {
     const user = req.user;
     const pantry = req.pantry;
 
-    if (user.role === 'User'){
+    if (user){
         res.render("user/userHome", {
             user: user,
             imageUrl: path.join('img', 'pantryLogo.jpg'),
             imageUrl2: path.join('img', 'TSPN_logo_enhanced.png')
         });
-    } else if (pantry.role === 'Pantry'){
+    } else if (pantry){
         res.render("pantry/pantryHome", {
             pantry: pantry,
             imageUrl: path.join('img', 'pantryLogo.jpg'),
