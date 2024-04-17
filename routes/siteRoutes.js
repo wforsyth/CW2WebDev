@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/siteControllers.js');
+const pantryController = require('../controllers/pantryControllers.js');
+const {verifyPantry} = require('../auth/auth.js');
 const {login} = require('../auth/auth.js');
 const {verify} = require('../auth/auth.js');
 
@@ -12,6 +14,9 @@ router.get('/donate', verify, controller.show_donation_page);
 router.get('/aboutUs', controller.show_about_page);
 router.get('/contactUs', controller.show_contact_page);
 router.get('/logout', verify, controller.logout);
+
+//Calling pantry functions 
+router.get('/pantryLogout', verifyPantry, pantryController.logout);
 
 //calling functions to display user pages
 router.get('/userAbout', verify, controller.show_userabout_page);

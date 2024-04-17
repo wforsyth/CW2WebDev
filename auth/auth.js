@@ -55,35 +55,36 @@ exports.login = function (req, res, next) {
 
 exports.verify = function (req, res, next) {
     let accessToken = req.cookies.jwt;
-    const user = req.user;
-    const pantry = req.pantry;
-
     if (!accessToken) {
         return res.status(403).send();
     }
-    if (user) {
-        let payload;
-        try {
-            payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_USER);
-            console.log(payload.user);
+    let payload;
+    try {
+        payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_USER);
+        console.log(payload.user);
 
-            req.user = payload.user;
-            next();
-        } catch (e) {
-            //if an error occured return request unauthorized error
-            res.status(401).send();
-        }
-    } else if (pantry) {
-        let payload;
-        try {
-            payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_PANTRY);
-            console.log(payload.pantry);
+        req.user = payload.user;
+        next();
+    } catch (e) {
+        //if an error occured return request unauthorized error
+        res.status(401).send();
+    }
+};
 
-            req.pantry = payload.pantry;
-            next();
-        } catch (e) {
-            //if an error occured return request unauthorized error
-            res.status(401).send();
-        }
+exports.verifyPantry = function (req, res, next) {
+    let accessToken = req.cookies.jwt;
+    if (!accessToken) {
+        return res.status(403).send();
+    }
+    let payload;
+    try {
+        payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_PANTRY);
+        console.log(payload.pantry);
+
+        req.pantry = payload.pantry;
+        next();
+    } catch (e) {
+        //if an error occured return request unauthorized error
+        res.status(401).send();
     }
 };
