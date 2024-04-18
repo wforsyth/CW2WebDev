@@ -150,7 +150,19 @@ exports.handle_donation = function (req, res) {
     }
 
     else {
-        donationDao.addDonation(user, foodName, quantity, expirationDate);
+        donationDao.addDonation(user, foodName, quantity, expirationDate, (err, donation) =>{
+            if(err){
+                console.error("Error inserting donation:", err);
+                res.status(500).send("Error entering donation");
+            } else{
+               console.log("new donation:", donation);
+               res.render("user/userHome", {
+                    user: user,
+                    imageUrl: path.join('img', 'pantryLogo.jpg'),
+                    imageUrl2: path.join('img', 'TSPN_logo_enhanced.png')
+               }) 
+            }
+        });
     }
 }
 
