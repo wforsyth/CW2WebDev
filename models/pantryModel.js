@@ -16,7 +16,7 @@ class PantryDAO {
     init(){
         this.db.insert({
             pantry: 'Govan',
-            password: '$2a$10$Aatm13fCUamDqcVsA0m2YOy1jFvQvGnaAxJHHBwtbrsSw5B40CObm',
+            password: '$2a$10$REC78a99bqYwmsujHgC10uRZTyCmc6BdJ2Y5iXHHoVJNbqy/FozfC',
             location: 'Govan, Glasgow',
             role: 'Pantry'
         })

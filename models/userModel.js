@@ -37,13 +37,13 @@ class UserDAO {
     } 
     
     lookup(user, cb){
-        this.db.find({'user': user}, function (err, entries){
+        this.db.find({'user': user}, function (err, donations){
             if (err){
                 return cb(null, null);
             } else {
-                if(entries.length == 0){
+                if(donations.length == 0){
                     return cb(null, null);
-                } return cb(null, entries[0]);
+                } return cb(null, donations[0]);
             }
         });
     }

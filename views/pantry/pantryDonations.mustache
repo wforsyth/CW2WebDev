@@ -1,0 +1,43 @@
+<html>
+    <head>
+        {{>header}}
+    </head>
+    <body>
+
+    <style>
+        body{
+            background-color: #3a5f5e;
+        }
+        .title{
+            color: white;
+        }
+    </style>
+
+        {{>pantryNav}}
+        {{#donations}}
+            <div class="container">
+                <h1 class="title mt-5 mb-4">Donation Information</h1>
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">Donation From: {{ user }}</h2>
+                        <h2 class="card-title">Location: {{ location }}</h2>
+                        <h5 class="card-title">Food Item: {{ foodName }}</h5>
+                        <p class="card-text">Quantity: {{ quantity }}</p>
+                        <p class="card-text">Expiration Date: {{ expiration }}</p>
+                        <a href="#" class="btn btn-primary">Accept</a>
+                    </div>
+                </div>
+            </div>
+        {{/donations}}
+        {{^donations}}
+            <div class="container">
+                <h1 class="mt-5 mb-4">Donation Information</h1>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">No donations currently available</h5>
+                    </div>
+                </div>
+            </div>
+        {{/donations}}
+    </body>
+</html>

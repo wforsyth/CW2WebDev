@@ -19,8 +19,8 @@ exports.login = function (req, res, next) {
                     let accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_USER);
                     res.cookie("jwt", accessToken);
 
-                    console.log("JWT token generated for user:", user)
-                    console.log(payload);
+                    //console.log("JWT token generated for user:", user)
+                    //console.log(payload);
 
                     //and then pass onto the next middleware
                     req.user = user;
@@ -39,8 +39,8 @@ exports.login = function (req, res, next) {
                             let accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_PANTRY);
                             res.cookie("jwt", accessToken);
 
-                            console.log("JWT token generated for pantry:", pantry)
-                            console.log(payload);
+                            //console.log("JWT token generated for pantry:", pantry)
+                            //console.log(payload);
 
                             //and then pass onto the next middleware
                             req.pantry = pantry;
@@ -59,8 +59,8 @@ exports.login = function (req, res, next) {
                                     let accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_ADMIN);
                                     res.cookie("jwt", accessToken);
 
-                                    console.log("JWT token generated for admin:", admin)
-                                    console.log(payload);
+                                    //console.log("JWT token generated for admin:", admin)
+                                    //console.log(payload);
 
                                     //and then pass onto the next middleware
                                     req.admin = admin;
@@ -84,7 +84,7 @@ exports.verify = function (req, res, next) {
     let payload;
     try {
         payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_USER);
-        console.log(payload.user);
+        //console.log(payload.user);
 
         req.user = payload.user;
         next();
@@ -102,7 +102,7 @@ exports.verifyPantry = function (req, res, next) {
     let payload;
     try {
         payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_PANTRY);
-        console.log(payload.pantry);
+        //console.log(payload.pantry);
 
         req.pantry = payload.pantry;
         next();
@@ -120,7 +120,7 @@ exports.verifyAdmin = function (req, res, next) {
     let payload;
     try {
         payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_ADMIN);
-        console.log(payload.admin);
+        //console.log(payload.admin);
 
         req.admin = payload.admin;
         next();

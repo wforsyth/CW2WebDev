@@ -149,22 +149,28 @@ exports.handle_donation = function (req, res) {
         return
     }
 
-    else {
-        donationDao.addDonation(user, foodName, quantity, expirationDate, (err, donation) =>{
-            if(err){
-                console.error("Error inserting donation:", err);
-                res.status(500).send("Error entering donation");
-            } else{
-               console.log("new donation:", donation);
-               res.render("user/userHome", {
-                    user: user,
-                    imageUrl: path.join('img', 'pantryLogo.jpg'),
-                    imageUrl2: path.join('img', 'TSPN_logo_enhanced.png')
-               }) 
-            }
-        });
-    }
+    donationDao.addDonation(user.user, user.location, foodName, quantity, expirationDate);
+    res.render("user/userHome", {
+        user: user,
+        imageUrl: path.join('img', 'pantryLogo.jpg'),
+        imageUrl2: path.join('img', 'TSPN_logo_enhanced.png')
+    });
 }
+
+/*else {
+    donationDao.addDonation(user, foodName, quantity, expirationDate, (err, donation) =>{
+        if(err){
+            console.log("Error inserting donation:", err);
+            res.status(500).send("Error entering donation");
+        } else{
+           console.log("new donation:", donation);
+           res.render("user/userHome", {
+                user: user,
+                imageUrl: path.join('img', 'pantryLogo.jpg'),
+                imageUrl2: path.join('img', 'TSPN_logo_enhanced.png')
+           }) 
+        }
+    });*/
 
 
 exports.logout = function (req, res) {
