@@ -87,6 +87,8 @@ exports.register_user = function (req, res) {
     const user = req.body.username;
     const password = req.body.password;
     const confirmPassword = req.body.confirmPassword;
+    const location = req.body.location;
+    const role = "User";
 
     if (!user || !password) {
         res.status(401).send('Username or password fields cannot be empty');
@@ -102,8 +104,8 @@ exports.register_user = function (req, res) {
             return;
         }
 
-        userDao.create(user, password);
-        console.log("Register user:", user, "Password:", password);
+        userDao.create(user, password, role,  location);
+        console.log("Register user:", user, "Password:", password, "Location:", location);
 
         res.redirect('/login');
     });
