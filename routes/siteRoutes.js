@@ -23,6 +23,9 @@ router.get('/pantryLogout', verifyPantry, pantryController.logout);
 //Calling admin functions
 router.get('/adminLogout', verifyAdmin, adminController.logout);
 
+//Calling user functions
+router.post('/donation', verify, controller.handle_donation);
+
 //calling functions to display user pages
 router.get('/userAbout', verify, controller.show_userabout_page);
 router.get('/userContact', verify, controller.show_usercontact_page);

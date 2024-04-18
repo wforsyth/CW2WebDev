@@ -1,11 +1,8 @@
-<!-- donate.mustache -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/login.css">
-    <title>Food Donation Form</title>
+    <title>Donation Form</title>
     {{>header}}
 </head>
 <body>
@@ -26,27 +23,22 @@
     <div class="container center-content">
         <div class="row justify-content-center form-content">
             <div class="col-md-6">
-                <h1 class="text-center">Food Donation Form</h1>
+                <h1 class="text-center">Donation Form</h1>
                 <div id="formContent">
-                    <form action="/donate" method="POST">
+                    <form method="POST" role="/donation">
                         <!-- Food Item Input Fields -->
                         <div id="foodItems">
                             <div class="food-item">
-                                <label for="foodName1">Food Name:</label>
-                                <input type="text" id="foodName1" name="foodName[]" class="form-control" required>
+                                <label for="food">Food:</label>
+                                <input type="text" id="food" name="food" class="form-control" required>
 
-                                <label for="quantity1">Quantity:</label>
-                                <input type="number" id="quantity1" name="quantity[]" class="form-control" required>
+                                <label for="quantity">Quantity:</label>
+                                <input type="number" id="quantity" name="quantity" class="form-control" required>
 
-                                <label for="expirationDate1">Expiration Date:</label>
-                                <input type="date" id="expirationDate1" name="expirationDate[]" class="form-control" required>
+                                <label for="expirationDate">Expiration Date:</label>
+                                <input type="date" id="expirationDate" name="expirationDate" class="form-control" required>
                             </div>
                         </div>
-
-                        <!-- Add Another Food Item Button -->
-                        <button type="button" id="addFoodItem" class="btn btn-secondary btn-block">Add Another Food Item</button>
-
-                        <!-- Submit Button -->
                         <button type="submit" class="btn btn-primary btn-block">Donate</button>
                     </form>
                 </div>

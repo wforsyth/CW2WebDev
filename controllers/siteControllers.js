@@ -1,5 +1,6 @@
 const path = require('path')
 const userDao = require('../models/userModel.js');
+const donationDao = require('../models/donationModel.js');
 const auth = require("../auth/auth.js")
 
 
@@ -114,24 +115,42 @@ exports.handle_login = function (req, res) {
     const pantry = req.pantry;
     const admin = req.admin;
 
-    if (user){
+    if (user) {
         res.render("user/userHome", {
             user: user,
             imageUrl: path.join('img', 'pantryLogo.jpg'),
             imageUrl2: path.join('img', 'TSPN_logo_enhanced.png')
         });
-    } else if (pantry){
+    } else if (pantry) {
         res.render("pantry/pantryHome", {
             pantry: pantry,
             imageUrl: path.join('img', 'pantryLogo.jpg'),
             imageUrl2: path.join('img', 'TSPN_logo_enhanced.png')
         });
-    } else if (admin){
+    } else if (admin) {
         res.render("admin/adminHome", {
             admin: admin,
             imageUrl: path.join('img', 'pantryLogo.jpg'),
             imageUrl2: path.join('img', 'TSPN_logo_enhanced.png')
         });
+    }
+}
+
+//methods to handle donations
+
+exports.handle_donation = function (req, res) {
+    const user = req.user;
+    const foodName = req.body.food;
+    const quantity = req.body.quantity;
+    const expirationDate = req.body.expirationDate;
+
+    if (!user) {
+        res.status(401).send('User not authenticated');
+        return
+    }
+
+    else {
+        donationDao.addDonation(user, foodName, quantity, expirationDate);
     }
 }
 
