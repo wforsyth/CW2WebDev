@@ -1,0 +1,45 @@
+<html>
+    <head>
+        {{>header}}
+    </head>
+    <body>
+
+    <style>
+        body{
+            background-color: #3a5f5e;
+        }
+        .btn{
+            background-color: red;
+        }
+    </style>
+
+        {{>adminNav}}
+        {{#user}}
+            <div class="container">
+                <h1 class="title mt-5 mb-4">User Information</h1>
+                <div class="card">
+                    <div class="card-body">
+                    <form action="/deleteUser" method="POST">
+                        <input type="hidden" name="userId" value="{{_id}}">
+                        <input type="hidden" name="username" value="{{user}}">
+                        <input type="hidden" name="location" value="{{location}}">
+                        <h2 class="card-title">Username: {{ user }}</h2>
+                        <h2 class="card-title">Location: {{ location }}</h2>
+                        <button type="submit" class="btn btn-primary">Delete</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {{/user}}
+        {{^user}}
+            <div class="container">
+                <h1 class="mt-5 mb-4">User Information</h1>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">No users currently available</h5>
+                    </div>
+                </div>
+            </div>
+        {{/user}}
+    </body>
+</html>

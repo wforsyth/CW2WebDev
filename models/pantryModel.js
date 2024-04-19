@@ -34,6 +34,19 @@ class PantryDAO {
 
     }
 
+    create(pantry, password, location, role, inventory){
+        const that = this;
+        bcrypt.hash(password, saltRounds).then(function(hash){
+            var entry = {pantry: pantry, password: hash, location: location, role: role, inventory: inventory};
+            that.db.insert(entry, function (err){
+                if (err){
+                    console.log("Can't insert pantry: ", pantry);
+                }
+                console.log(hash)
+            });
+        });
+    } 
+
     lookup(pantry, cb) {
         this.db.find({ 'pantry': pantry }, function (err, entries) {
             if (err) {
@@ -59,6 +72,19 @@ class PantryDAO {
             } else {
                 console.log('Pantry inventory successfully updated');
             }
+        });
+    }
+
+    getAllPantries() {
+        return new Promise((resolve, reject) => {
+            this.db.find({}, function (err, pantry) {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(pantry);
+                    console.log('function all() returns: ', pantry);
+                }
+            })
         });
     }
 }

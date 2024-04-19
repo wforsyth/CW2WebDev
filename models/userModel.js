@@ -26,7 +26,7 @@ class UserDAO {
     create(username, password, role, location){
         const that = this;
         bcrypt.hash(password, saltRounds).then(function(hash){
-            var entry = {user: username, password: hash, role: "User", location: location};
+            var entry = {user: username, password: hash, role: role, location: location};
             that.db.insert(entry, function (err){
                 if (err){
                     console.log("Can't insert user: ", username);
@@ -45,6 +45,19 @@ class UserDAO {
                     return cb(null, null);
                 } return cb(null, donations[0]);
             }
+        });
+    }
+
+    getAllUsers() {
+        return new Promise((resolve, reject) => {
+            this.db.find({}, function (err, user) {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(user);
+                    console.log('function all() returns: ', user);
+                }
+            })
         });
     }
 }

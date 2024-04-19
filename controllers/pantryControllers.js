@@ -20,6 +20,16 @@ exports.show_donations_page = function (req, res) {
     })
 }
 
+exports.show_pantryhome_page = function (req, res) {
+    const pantry = req.pantry;
+
+    res.render('pantry/pantryHome', {
+        pantry: pantry,
+        imageUrl: path.join('img', 'pantryLogo.jpg'),
+        imageUrl2: path.join('img', 'TSPN_logo_enhanced.png')
+    })
+}
+
 exports.accept_donation = function (req, res) {
     var pantry = req.pantry;
     var donationId = req.body.donationId;

@@ -16,7 +16,7 @@ class AdminDAO {
     init(){
         this.db.insert({
             admin: 'Admin',
-            password: '$2a$10$hjqi3IJrApHs/pQbMeUisury9GJO.PpEdMBgL0rhNTQHM3V77ousq',
+            password: '$2a$10$Nv.a0LJFHLdCLDlTAiypDeZZy3DJvt.0f/4/ZuaLy1TyH1ybSPhmC',
             role: 'Admin'
         })
     }

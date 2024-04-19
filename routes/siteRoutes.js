@@ -21,9 +21,15 @@ router.get('/logout', verify, controller.logout);
 router.get('/pantryLogout', verifyPantry, pantryController.logout);
 router.get('/pantryDonate', verifyPantry, pantryController.show_donations_page);
 router.post('/acceptDonation', verifyPantry, pantryController.accept_donation);
+router.get('/pantryHome', verifyPantry, pantryController.show_pantryhome_page);
 
 //Calling admin functions
 router.get('/adminLogout', verifyAdmin, adminController.logout);
+router.get('/adminHome', verifyAdmin, adminController.show_adminhome_page);
+router.get('/viewUsers', verifyAdmin, adminController.show_users_page);
+router.get('/viewPantries', verifyAdmin, adminController.show_pantries_page);
+router.get('/createPantryPage', verifyAdmin, adminController.show_createpantry_page);
+router.post('/registerPantry', verifyAdmin, adminController.register_pantry);
 
 //Calling user functions
 router.post('/userDonation', verify, controller.handle_donation);
@@ -38,16 +44,16 @@ router.post('/register', controller.register_user);
 router.post('/login', login, controller.handle_login);
 
 //Error handling
-router.use(function (req, res) {
+/*router.use(function (req, res) {
     res.status(404);
     res.type('text/plain');
     res.send('404 Not found.');
-})
+})*/
 
-router.use(function (err, req, res, next) {
+/*router.use(function (err, req, res, next) {
     res.status(500);
     res.type('text/plain');
     res.send('Internal Server Error.');
-})
+})*/
 
 module.exports = router;
