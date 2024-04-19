@@ -59,6 +59,15 @@ class PantryDAO {
         });
     }
 
+    delete(pantryId){
+        this.db.remove({'_id': pantryId}, function (err){
+            if(err){
+                console.log('Error removing pantry')
+            } 
+            console.log("pantry", pantryId, "removed")
+        });
+    }
+
     receiveDonation(food, quantity, expiration, pantry) {
         var donation = {
             food: food,

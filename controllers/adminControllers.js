@@ -88,6 +88,22 @@ exports.register_pantry = function (req, res) {
     });
 }
 
+exports.delete_user = function (req, res){
+    const userId = req.body.userId;
+
+    userDao.delete(userId);
+
+    exports.show_users_page(req, res);
+}
+
+exports.delete_pantry = function (req, res){
+    const pantryId = req.body.pantryId;
+
+    pantryDao.delete(pantryId);
+
+    exports.show_pantries_page(req, res);
+}
+
 exports.logout = function (req, res) {
     res
         .clearCookie("jwt")

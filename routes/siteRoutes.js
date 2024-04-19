@@ -30,6 +30,8 @@ router.get('/viewUsers', verifyAdmin, adminController.show_users_page);
 router.get('/viewPantries', verifyAdmin, adminController.show_pantries_page);
 router.get('/createPantryPage', verifyAdmin, adminController.show_createpantry_page);
 router.post('/registerPantry', verifyAdmin, adminController.register_pantry);
+router.post('/deleteUser', verifyAdmin, adminController.delete_user);
+router.post('/deletePantry', verifyAdmin, adminController.delete_pantry);
 
 //Calling user functions
 router.post('/userDonation', verify, controller.handle_donation);

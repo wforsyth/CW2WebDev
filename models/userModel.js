@@ -48,6 +48,15 @@ class UserDAO {
         });
     }
 
+    delete(userId){
+        this.db.remove({'_id': userId}, function (err){
+            if(err){
+                console.log('Error removing user')
+            } 
+            console.log("user", userId, "removed")
+        })
+    }
+
     getAllUsers() {
         return new Promise((resolve, reject) => {
             this.db.find({}, function (err, user) {
