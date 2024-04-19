@@ -8,10 +8,10 @@ exports.show_donations_page = function (req, res) {
     const pantry = req.pantry;
     console.log(pantry._id);
 
-    donationDao.getAllDonations().then((list) => {
+    donationDao.getAllDonations().then((donations) => {
         res.render('pantry/pantryDonations', {
             pantry: pantry,
-            donations: list,
+            donations: donations,
             imageUrl: path.join('img', 'pantryLogo.jpg'),
         });
     }).catch((err) => {
@@ -22,18 +22,15 @@ exports.show_donations_page = function (req, res) {
 
 exports.accept_donation = function (req, res) {
     const pantry = req.pantry;
-    const food = req.query.foodName;
-    const quantity = req.query.quantity;
-    const expiration = req.query.expiration;
-    console.log(food);
+    console.log(donation.foodName);
 
-    pantryDao.receiveDonation(food, quantity, expiration, pantry, (err) => {
+    pantryDao.receiveDonation(donation.foodName, donation.quantity, donation.expiration, pantry, (err) => {
         if (err) {
             console.log('Error receiving donation', err);
             return res.status(500).send('Error receiving donation');
         }
 
-        donationDao.removeDonation(donation, (err) => {
+        donationDao.removeDonation(donation._id, (err) => {
             if (err) {
                 console.log('Error removing donation', err);
                 return res.status(500).send('Error removing donation');
