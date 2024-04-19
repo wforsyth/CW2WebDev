@@ -58,7 +58,7 @@ class DonationDAO {
             quantity: quantity,
             expiration: expiration
         };
-        
+
         this.db.insert(donation, function (err, doc) {
             if (err) {
                 console.log('Error inserting document', err);
@@ -68,12 +68,12 @@ class DonationDAO {
         });
     }
 
-    removeDonation(donationId, cb){
-        this.db.remove({ _id: donationId}, {}, (err, donationRemoved) => {
+    removeDonation(donationId){
+        this.db.remove({ _id: donationId}, {}, (err) => {
             if (err){
-                return cb(err);
+                console.log("Error could not remove donation");
             }
-            cb(null, donationRemoved)
+            console.log("Donation removed")
         });
     }
 }

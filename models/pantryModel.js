@@ -53,7 +53,7 @@ class PantryDAO {
             expiration: expiration
         }
 
-        this.db.update({ _id: pantry._id }, { $push: { inventory: donation } }, {}, (err) => {
+        this.db.update({ _id: pantry}, { $push: { inventory: donation } }, {}, (err) => {
             if (err) {
                 console.log('Error updating pantry inventory', err);
             } else {

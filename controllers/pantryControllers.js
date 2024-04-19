@@ -37,6 +37,9 @@ exports.accept_donation = function (req, res) {
             return res.status(500).send('Error receiving donation');
         }
 
+        console.log(donationId);
+        console.log(pantry);
+
         donationDao.removeDonation(donationId, (err) => {
             if (err) {
                 console.log('Error removing donation', err);
@@ -44,8 +47,6 @@ exports.accept_donation = function (req, res) {
             }
 
             console.log('Donation Accepted and Removed successfuly')
-            console.log(donationId);
-            console.log(pantry);
         });
     });
 }
