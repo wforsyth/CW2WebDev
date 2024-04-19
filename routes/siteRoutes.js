@@ -20,6 +20,7 @@ router.get('/logout', verify, controller.logout);
 //Calling pantry functions 
 router.get('/pantryLogout', verifyPantry, pantryController.logout);
 router.get('/pantryDonate', verifyPantry, pantryController.show_donations_page);
+router.get('/acceptDonation', verifyPantry, pantryController.accept_donation);
 
 //Calling admin functions
 router.get('/adminLogout', verifyAdmin, adminController.logout);

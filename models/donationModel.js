@@ -36,6 +36,19 @@ class DonationDAO {
         });
     }
 
+    getDonationById(donationId){
+        return new Promise((resolve, reject) =>{
+            this.db.find({_id: donationId}, function (err, donation){
+                if(err){
+                    reject(err);
+                } else{
+                    resolve(donation);
+                    console.log('getDOnationById returns: ', donation);
+                }
+            })
+        })
+    }
+
     addDonation(user, location, foodName, quantity, expiration) {
 
         var donation = {
@@ -54,16 +67,12 @@ class DonationDAO {
         });
     }
 
-    getDonationByUser(user) {
-        return new Promise((resolve, reject) => {
-            this.db.find({ 'user': user }, function (err, donation) {
-                if (err) {
-                    reject(err);
-                } else {
-                    resolve(donation);
-                    console.log('getEntriesByUser returns: ', donation);
-                }
-            })
+    removeDonation(donationId, cb){
+        this.db.remove({ _id: donationId}, {}, (err, donationRemoved) => {
+            if (err){
+                return cb(err);
+            }
+            cb(null, donationRemoved)
         });
     }
 }
