@@ -46,7 +46,27 @@ class PantryDAO {
         });
     }
 
-    receiveDonation(food, quantity, expiration, pantry) {
+    receiveDonation(food, quantity, expiration, pantry, cb){
+        var donation= {
+            food: food,
+            quantity: quantity,
+            expiration: expiration
+        }
+
+        this.db.update({_id: pantry._id}, {$push: {inventory: {donation}}}, {}, (err) =>{
+            if(err){
+                console.log('Error updating pantry inventory', err);
+                cb(err);
+            } else{
+                console.log('Pantry inventory successfully updated');
+                cb(null);
+            }
+        })
+    }
+
+
+
+    /*receiveDonation(food, quantity, expiration, pantry, cb) {
         this.db.find({ 'pantry': pantry }, function (err) {
             if (err) {
                 console.log('Error finding pantry');
@@ -54,15 +74,23 @@ class PantryDAO {
                 console.log('Pantry: ', pantry);
             }
 
-            const donation = {
+            var donation= {
                 food: food,
                 quantity: quantity,
                 expiration: expiration
             }
 
-            pantry.inventory.push(donation);
+            this.db.update({_id: pantry._id}, {$push: {inventory: {donation}}}, {}, (err, numAffected) => {
+                if(err){
+                    console.log('Error updating pantry inventory', err);
+                    cb(err);
+                } else{
+                    console.log('Pantry inventory successfully updated');
+                    cb(null);
+                }
+            })
         });
-    }
+    }*/
 }
 
 const dao = new PantryDAO();

@@ -22,21 +22,24 @@ exports.show_donations_page = function (req, res) {
 
 exports.accept_donation = function (req, res) {
     const pantry = req.pantry;
-    console.log(donation.foodName);
-
-    pantryDao.receiveDonation(donation.foodName, donation.quantity, donation.expiration, pantry, (err) => {
+    const donationId = req.body.donationId;
+    const foodName = req.body.foodName;
+    const quantity = req.body.quantity;
+    const expiration = req.body.expiration;
+    
+    pantryDao.receiveDonation(foodName, quantity, expiration, pantry, (err) => {
         if (err) {
             console.log('Error receiving donation', err);
             return res.status(500).send('Error receiving donation');
         }
 
-        donationDao.removeDonation(donation._id, (err) => {
+        donationDao.removeDonation(donationId, (err) => {
             if (err) {
                 console.log('Error removing donation', err);
                 return res.status(500).send('Error removing donation');
             }
 
-            console.log('Donation ', donation, 'Accepted and Removed successfuly')
+            console.log('Donation Accepted and Removed successfuly')
         });
     });
 }
