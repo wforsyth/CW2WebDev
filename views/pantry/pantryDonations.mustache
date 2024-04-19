@@ -20,7 +20,10 @@
                 <div class="card">
                     <div class="card-body">
                     <form action="/acceptDonation" method="POST">
-                        <input type="hidden" name="donationId" value="{{donation._id}}">
+                        <input type="hidden" name="donationId" value="{{_id}}">
+                        <input type="hidden" name="foodName" value="{{foodName}}">
+                        <input type="hidden" name="quantity" value="{{quantity}}">
+                        <input type="hidden" name="expiration" value="{{expiration}}">
                         <h2 class="card-title">Donation From: {{ user }}</h2>
                         <h2 class="card-title">Location: {{ location }}</h2>
                         <h5 class="card-title">Food Item: {{ foodName }}</h5>

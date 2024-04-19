@@ -21,11 +21,15 @@ exports.show_donations_page = function (req, res) {
 }
 
 exports.accept_donation = function (req, res) {
-    const pantry = req.pantry;
-    const donationId = req.body.donationId;
-    const foodName = req.body.foodName;
-    const quantity = req.body.quantity;
-    const expiration = req.body.expiration;
+    var pantry = req.pantry;
+    var donationId = req.body.donationId;
+    var foodName = req.body.foodName;
+    var quantity = req.body.quantity;
+    var expiration = req.body.expiration;
+    console.log(foodName);
+    console.log(donationId);
+    console.log(quantity);
+    console.log(expiration);
     
     pantryDao.receiveDonation(foodName, quantity, expiration, pantry, (err) => {
         if (err) {
@@ -40,6 +44,7 @@ exports.accept_donation = function (req, res) {
             }
 
             console.log('Donation Accepted and Removed successfuly')
+            console.log(donationId);
             console.log(pantry);
         });
     });

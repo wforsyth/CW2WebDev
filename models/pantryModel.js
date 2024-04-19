@@ -46,22 +46,20 @@ class PantryDAO {
         });
     }
 
-    receiveDonation(food, quantity, expiration, pantry, cb){
-        var donation= {
+    receiveDonation(food, quantity, expiration, pantry) {
+        var donation = {
             food: food,
             quantity: quantity,
             expiration: expiration
         }
 
-        this.db.update({_id: pantry._id}, {$push: {inventory: {donation}}}, {}, (err) =>{
-            if(err){
+        this.db.update({ _id: pantry._id }, { $push: { inventory: donation } }, {}, (err) => {
+            if (err) {
                 console.log('Error updating pantry inventory', err);
-                cb(err);
-            } else{
+            } else {
                 console.log('Pantry inventory successfully updated');
-                cb(null);
             }
-        })
+        });
     }
 }
 

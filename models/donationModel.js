@@ -57,7 +57,8 @@ class DonationDAO {
             foodName: foodName,
             quantity: quantity,
             expiration: expiration
-        }
+        };
+        
         this.db.insert(donation, function (err, doc) {
             if (err) {
                 console.log('Error inserting document', err);
