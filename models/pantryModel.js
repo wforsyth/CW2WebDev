@@ -63,34 +63,6 @@ class PantryDAO {
             }
         })
     }
-
-
-
-    /*receiveDonation(food, quantity, expiration, pantry, cb) {
-        this.db.find({ 'pantry': pantry }, function (err) {
-            if (err) {
-                console.log('Error finding pantry');
-            } else {
-                console.log('Pantry: ', pantry);
-            }
-
-            var donation= {
-                food: food,
-                quantity: quantity,
-                expiration: expiration
-            }
-
-            this.db.update({_id: pantry._id}, {$push: {inventory: {donation}}}, {}, (err, numAffected) => {
-                if(err){
-                    console.log('Error updating pantry inventory', err);
-                    cb(err);
-                } else{
-                    console.log('Pantry inventory successfully updated');
-                    cb(null);
-                }
-            })
-        });
-    }*/
 }
 
 const dao = new PantryDAO();

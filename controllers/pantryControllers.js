@@ -40,6 +40,7 @@ exports.accept_donation = function (req, res) {
             }
 
             console.log('Donation Accepted and Removed successfuly')
+            console.log(pantry);
         });
     });
 }
