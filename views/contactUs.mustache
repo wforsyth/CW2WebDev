@@ -1,14 +1,8 @@
-<!-- contact.mustache -->
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us</title>
-    <!-- Include any necessary CSS stylesheets here -->
+    {{>header}}
 </head>
 <body>
-    {{>header}}
     {{#user}}
         {{>userNav}}
     {{/user}}
@@ -18,12 +12,16 @@
 
     <div class="container-fluid">
         <div class="row mt-4">
-            <div class="col-md-6 bg-secondary text-white">
-                <h2>Contact Us</h2>
-                <p>This is the contact page content.</p>
-                <!-- Add contact form or contact information here -->
+            <div class="col-md-6 bg-secondary text-white d-flex flex-column">
+                <h1>Contact Us</h1>
+                <h4>Address: 69-71 Aberdalgie Road, Easterhouse, Glasgow, G34 9HJ</h3>
+                <h4>Phone No: 0141 442 0349</h3>
+                <h4>Email: enquiries@scottishpantrynetwork.org.uk</h3>
+                <br>
+                <h4>Locations:</h4>
+                <iframe src="https://www.google.com/maps/d/embed?mid=148StCPpN9dM56ecUVsyMCHWQKt5ul6U&ehbc=2E312F" width="500" height="400"></iframe>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 d-flex">
                 <img src="{{imageUrl2}}" class="img-fluid" alt="Image">
             </div>
         </div>

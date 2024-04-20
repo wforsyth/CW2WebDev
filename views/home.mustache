@@ -4,14 +4,15 @@
     </head>
     <body>
         {{>navbar}}
-        <div class="container-fluid">
-            <div class="row mt-4">
-                <div class="col-md-6 bg-secondary text-white">
-                <h2>Left Side Content</h2>
-                <p>This is some text on the gray left side.</p>
+        <div class="container-fluid mt-4">
+            <div class="row">
+                <div class="col-md-6 bg-secondary text-white d-flex flex-column">
+                    <h1>Welcome!</h1>
+                    <h3>Welcome to the Scottish Pantry Network website.</h3>
+                    <h3>Register now and donate to your local pantry!</h3>
                 </div>
-            <div class="col-md-6">
-            <img src="{{imageUrl2}}" class="img-fluid" alt="Image">
+                <div class="col-md-6 d-flex">
+                    <img src="{{imageUrl2}}" class="img-fluid" alt="Image">
                 </div>
             </div>
         </div>

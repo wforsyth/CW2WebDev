@@ -1,14 +1,8 @@
-<!-- about.mustache -->
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us</title>
-    <!-- Include any necessary CSS stylesheets here -->
+    {{>header}}
 </head>
 <body>
-    {{>header}}
     {{#user}}
         {{>userNav}}
     {{/user}}
@@ -18,12 +12,17 @@
 
     <div class="container-fluid">
         <div class="row mt-4">
-            <div class="col-md-6 bg-secondary text-white">
-                <h2>About Us</h2>
-                <p>This is the about us page content.</p>
-                <!-- Add information about your organization or team here -->
+            <div class="col-md-6 bg-secondary text-white d-flex flex-column">
+                <h1>About Us</h1>
+                <h2>Who are we?</h2>
+                <p>The Scottish Pantry Network is a foodbank alternative that works with local suppliers to provide an effective alternative to help reduce food waste.</p>
+                <h2>What is a pantry?</h2>
+                <p>Pantries are located in local communitites and for a small membership fee heavily discounted food. Many of the pantries mentioned on this website also provide guidance and support on topics related to food insecurity, such as bills, benefits, unemployment, and mental health, among others. Please contact your local pantry to learn about the latest changes and events!</p>
+                <p>Our model is based on a membership system whereby for a £2.50 membership, shoppers will get between £10 - £15 worth of quality food, in addition memberships are not limited which enables families to purchase multiple memberships further providing choice and flexible access to products.</p>
+                <h2>Pantry Locations?</h2>
+                <p>The Scottish Pantry Network has pantries located throughout Scotland including several in Glasgow, Falkirk, Greenock, and Livingston!</p> 
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 d-flex">
                 <img src="{{imageUrl2}}" class="img-fluid" alt="Image">
             </div>
         </div>
