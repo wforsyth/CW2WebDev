@@ -34,18 +34,18 @@ class PantryDAO {
 
     }
 
-    create(pantry, password, location, role, inventory){
+    create(pantry, password, location, role, inventory) {
         const that = this;
-        bcrypt.hash(password, saltRounds).then(function(hash){
-            var entry = {pantry: pantry, password: hash, location: location, role: role, inventory: inventory};
-            that.db.insert(entry, function (err){
-                if (err){
+        bcrypt.hash(password, saltRounds).then(function (hash) {
+            var entry = { pantry: pantry, password: hash, location: location, role: role, inventory: inventory };
+            that.db.insert(entry, function (err) {
+                if (err) {
                     console.log("Can't insert pantry: ", pantry);
                 }
                 console.log(hash)
             });
         });
-    } 
+    }
 
     lookup(pantry, cb) {
         this.db.find({ 'pantry': pantry }, function (err, entries) {
@@ -59,27 +59,30 @@ class PantryDAO {
         });
     }
 
-    delete(pantryId){
-        this.db.remove({'_id': pantryId}, function (err){
-            if(err){
+    delete(pantryId) {
+        this.db.remove({ '_id': pantryId }, function (err) {
+            if (err) {
                 console.log('Error removing pantry')
-            } 
+            }
             console.log("pantry", pantryId, "removed")
         });
     }
 
-    receiveDonation(food, quantity, expiration, pantry) {
+    receiveDonation(food, quantity, expiration, pantryId, callback) {
+
         var donation = {
             food: food,
             quantity: quantity,
             expiration: expiration
         }
 
-        this.db.update({ _id: pantry}, { $push: { inventory: donation } }, {}, (err) => {
+        this.db.update({ '_id': pantryId }, { $set: { 'inventory': donation } }, {}, function (err) {
             if (err) {
-                console.log('Error updating pantry inventory', err);
+                console.log('Error receiving donation', err);
+                callback(err);
             } else {
-                console.log('Pantry inventory successfully updated');
+                console.log('Pantry inventory successfully updated with donation:', donation);
+                callback(null);
             }
         });
     }

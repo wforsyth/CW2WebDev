@@ -1,0 +1,44 @@
+<html>
+    <head>
+        {{>header}}
+    </head>
+    <body>
+
+    <style>
+        body{
+            background-color: #3a5f5e;
+        }
+    </style>
+
+        {{>pantryNav}}
+        {{#inventory}}
+            <div class="container">
+                <h1 class="title mt-5 mb-4">Pantry Inventory</h1>
+                <div class="card">
+                    <div class="card-body">
+                    <form action="/deleteInventory" method="POST">
+                        <input type="hidden" name="pantryId" value="{{_id}}">
+                        <input type="hidden" name="foodName" value="{{food}}">
+                        <input type="hidden" name="quantity" value="{{quantity}}">
+                        <input type="hidden" name="expiration" value="{{expiration}}">
+                        <h5 class="card-title">Food Item: {{ food }}</h5>
+                        <p class="card-text">Quantity: {{ quantity }}</p>
+                        <p class="card-text">Expiration Date: {{ expiration }}</p>
+                        <button type="submit" class="btn btn-primary">Accept</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {{/inventory}}
+        {{^inventory}}
+            <div class="container">
+                <h1 class="mt-5 mb-4">Pantry Inventory</h1>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">No inventory currently available</h5>
+                    </div>
+                </div>
+            </div>
+        {{/inventory}}
+    </body>
+</html>

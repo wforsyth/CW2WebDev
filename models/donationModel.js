@@ -69,7 +69,7 @@ class DonationDAO {
     }
 
     removeDonation(donationId){
-        this.db.remove({ _id: donationId}, {}, (err) => {
+        this.db.remove({ '_id': donationId}, {}, (err) => {
             if (err){
                 console.log("Error could not remove donation");
             }

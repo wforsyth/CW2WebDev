@@ -22,6 +22,7 @@ router.get('/pantryLogout', verifyPantry, pantryController.logout);
 router.get('/pantryDonate', verifyPantry, pantryController.show_donations_page);
 router.post('/acceptDonation', verifyPantry, pantryController.accept_donation);
 router.get('/pantryHome', verifyPantry, pantryController.show_pantryhome_page);
+router.get('/pantryInventory', verifyPantry, pantryController.show_inventory_page);
 
 //Calling admin functions
 router.get('/adminLogout', verifyAdmin, adminController.logout);

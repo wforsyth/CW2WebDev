@@ -31,33 +31,35 @@ exports.show_pantryhome_page = function (req, res) {
 }
 
 exports.accept_donation = function (req, res) {
-    var pantry = req.pantry;
+    var pantryId = req.pantry._id;
     var donationId = req.body.donationId;
     var foodName = req.body.foodName;
     var quantity = req.body.quantity;
     var expiration = req.body.expiration;
-    console.log(foodName);
-    console.log(donationId);
-    console.log(quantity);
-    console.log(expiration);
-    
-    pantryDao.receiveDonation(foodName, quantity, expiration, pantry, (err) => {
-        if (err) {
-            console.log('Error receiving donation', err);
-            return res.status(500).send('Error receiving donation');
+
+    pantryDao.receiveDonation(foodName, quantity, expiration, pantryId, function(err){
+        if (err){
+            res.status(500). send('Error receiving donation');
+        } else{
+            donationDao.removeDonation(donationId);
+
+            exports.show_donations_page(req, res);
         }
+    });
 
-        console.log(donationId);
-        console.log(pantry);
+    
+}
 
-        donationDao.removeDonation(donationId, (err) => {
-            if (err) {
-                console.log('Error removing donation', err);
-                return res.status(500).send('Error removing donation');
-            }
+exports.show_inventory_page = function (req, res) {
+    const pantry = req.pantry;
+    const inventory = req.pantry.inventory;
+    console.log(pantry);
+    console.log(inventory);
 
-            console.log('Donation Accepted and Removed successfuly')
-        });
+    res.render('pantry/pantryInventory', {
+        pantry: pantry,
+        inventory: inventory,
+        imageUrl: path.join('img', 'pantryLogo.jpg'),
     });
 }
 
