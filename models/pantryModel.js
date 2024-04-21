@@ -22,11 +22,38 @@ class PantryDAO {
             role: 'Pantry',
         })
 
-        //pantry
         this.db.insert({
-            pantry: 'Hillhead',
-            password: '$2a$10$V/hJq2jGHhLJR.4m89y8PuBKu.8C3BvZBo9P2CoHLaYtQvJebCmUm',
-            location: 'Hillhead, Glasgow',
+            pantry: 'Whiteinch',
+            password: '$2a$10$T3PwHF7yu1e/ckt2dxkLGeJjdS9xQtYDYJxm99ntL9rJYM7Wolybu',
+            location: '1 Northinch St, Glasgow',
+            role: 'Pantry',
+        });
+
+        this.db.insert({
+            pantry: 'Falkirk',
+            password: '$2a$10$RJ3kp7eP0m923.G1xeEJQe3AkzJovto4cJbuB6oZHEWdVfoRKBIHS',
+            location: 'Falkirk, Glasgow',
+            role: 'Pantry',
+        });
+
+        this.db.insert({
+            pantry: 'Courtyard',
+            password: '$2a$10$.4lJIKjpJ3QnFOzmO.EdIedUy3ah1ABa3kK0ukxi7FVPgqoy8qkVS',
+            location: '2 Wester Common Dr, Glasgow',
+            role: 'Pantry',
+        });
+
+        this.db.insert({
+            pantry: 'Pollok',
+            password: '$2a$10$XczCYpbnWPfQvoAXk5RaYe1jHgqJztVcxa96ucVwTg9uIKPEdV5aS',
+            location: '25 Brockburn Rd, Glasgow',
+            role: 'Pantry',
+        });
+
+        this.db.insert({
+            pantry: 'Croftpark',
+            password: '$2a$10$/fkrwvLe3X3erQ6vzbEHEeu37q6XeqktXL3jajWL5zd0Rct075ra.',
+            location: 'Crofthill Rd, Glasgow',
             role: 'Pantry',
         });
 

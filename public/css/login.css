@@ -2,13 +2,12 @@ body{
     background-color: #3a5f5e;
 }
 
-.center-content{
-    width: 8in;
-    background-color: #3a5f5e;
+.col-md-6{
+    border-radius: 10px;
 }
 
-.form-content{
-    border: solid black 1px;
-    margin-top: 1in;
-    border-radius: 10px;
+.row{
+    margin-top: 50px;  
+    padding: 20px; 
+    background-color: #3a5f5e;
 }
