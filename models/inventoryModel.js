@@ -51,23 +51,23 @@ class InventoryDAO {
         });
     }
 
-    removeDonation(donationId){
-        this.db.remove({ '_id': donationId}, {}, (err) => {
+    removeInventory(inventoryId){
+        this.db.remove({ '_id': inventoryId}, {}, (err) => {
             if (err){
-                console.log("Error could not remove donation");
+                console.log("Error could not remove inventory");
             }
-            console.log("Donation removed")
+            console.log("Inventory removed")
         });
     }
 
     getInventoryByPantry(pantry){
         return new Promise((resolve, reject) => {
-            this.db.find({'pantry': pantry}, function (err, donations) {
+            this.db.find({'pantry': pantry}, function (err, inventory) {
                 if (err) {
                     reject(err);
                 } else {
-                    resolve(donations);
-                    console.log('function all() returns: ', donations);
+                    resolve(inventory);
+                    console.log('function all() returns: ', inventory);
                 }
             })
         });  

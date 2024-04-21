@@ -31,26 +31,6 @@ exports.show_pantryhome_page = function (req, res) {
     })
 }
 
-/*exports.accept_donation = function (req, res) {
-    var pantryId = req.pantry._id;
-    var donationId = req.body.donationId;
-    var foodName = req.body.foodName;
-    var quantity = req.body.quantity;
-    var expiration = req.body.expiration;
-    console.log(foodName);
-
-    pantryDao.receiveDonation(foodName, quantity, expiration, pantryId, function(err){
-        if(err){
-            console.err('Error receiving donation:', err);
-            return res.status(500).send('Error receiving donation');
-        } else{
-            donationDao.removeDonation(donationId);
-
-            exports.show_donations_page(req, res);
-        }
-    });
-};*/
-
 exports.accept_donation = function (req, res) {
     var pantry = req.pantry;
     var donationId = req.body.donationId;
@@ -65,19 +45,27 @@ exports.accept_donation = function (req, res) {
     exports.show_donations_page(req, res); 
 };
 
-/*exports.show_inventory_page = function (req, res) {
-    const pantry = req.pantry;
-    const inventory = req.inventory;
-
-    res.render('pantry/pantryInventory', {
-        pantry: pantry,
-        inventory: inventory,
-        imageUrl: path.join('img', 'pantryLogo.jpg'),
-    });
-}*/
-
 exports.show_inventory_page = function (req, res){
+    const pantry = req.pantry;
     
+    inventoryDao.getInventoryByPantry(pantry.pantry).then((inventory) => {
+        res.render('pantry/pantryInventory', {
+            pantry: pantry,
+            inventory: inventory,
+            imageUrl: path.join('img', 'pantryLogo.jpg'),
+        });
+    }).catch((err) => {
+        console.log("Error retrieving donations:", err);
+        res.status(500).send('Internal server error');
+    })
+}
+
+exports.delete_inventory = function (req, res){
+    const inventoryId = req.body.inventoryId;
+
+    inventoryDao.removeInventory(inventoryId);
+
+    exports.show_inventory_page(req, res);
 }
 
 exports.logout = function (req, res) {

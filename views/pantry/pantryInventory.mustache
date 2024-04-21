@@ -11,14 +11,14 @@
                 <div class="card">
                     <div class="card-body">
                     <form action="/deleteInventory" method="POST">
-                        <input type="hidden" name="pantryId" value="{{_id}}">
+                        <input type="hidden" name="inventoryId" value="{{_id}}">
                         <input type="hidden" name="foodName" value="{{food}}">
                         <input type="hidden" name="quantity" value="{{quantity}}">
                         <input type="hidden" name="expiration" value="{{expiration}}">
                         <h5 class="card-title">Food Item: {{ food }}</h5>
                         <p class="card-text">Quantity: {{ quantity }}</p>
                         <p class="card-text">Expiration Date: {{ expiration }}</p>
-                        <button type="submit" class="btn btn-primary accept">Accept</a>
+                        <button type="submit" class="btn btn-primary remove">Remove</a>
                     </form>
                 </div>
             </div>
@@ -26,7 +26,6 @@
         {{/inventory}}
         {{^inventory}}
             <div class="container mb-4">
-                <h1 class="mt-5 mb-4">Pantry Inventory</h1>
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">No inventory currently available</h5>

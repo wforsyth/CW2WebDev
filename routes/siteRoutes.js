@@ -23,6 +23,7 @@ router.get('/pantryDonate', verifyPantry, pantryController.show_donations_page);
 router.post('/acceptDonation', verifyPantry, pantryController.accept_donation);
 router.get('/pantryHome', verifyPantry, pantryController.show_pantryhome_page);
 router.get('/pantryInventory', verifyPantry, pantryController.show_inventory_page);
+router.post('/deleteInventory', verifyPantry, pantryController.delete_inventory);
 
 //Calling admin functions
 router.get('/adminLogout', verifyAdmin, adminController.logout);
@@ -47,16 +48,16 @@ router.post('/register', controller.register_user);
 router.post('/login', login, controller.handle_login);
 
 //Error handling
-/*router.use(function (req, res) {
+router.use(function (req, res) {
     res.status(404);
     res.type('text/plain');
     res.send('404 Not found.');
-})*/
+})
 
-/*router.use(function (err, req, res, next) {
+router.use(function (err, req, res, next) {
     res.status(500);
     res.type('text/plain');
     res.send('Internal Server Error.');
-})*/
+})
 
 module.exports = router;
