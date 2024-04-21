@@ -36,7 +36,13 @@ This application is developed as the second coursework for the Web Application D
 
 ### Pantry
 - Admin can create pantries but to access already existing pantries the username is the name of the pantry and the password is the name of the pantry with a lowercase first letter.
-- e.g. username: "Govan", password "govan"
+- current pantries include:
+- username: "Govan", password "govan"
+- username: "Whiteinch", password "whiteinch"
+- username: "Falkirk", password "falkirk"
+- username: "Courtyard", password "courtyard"
+- username: "Pollok", password "pollok"
+- username: "Croftpark", password "croftpark"
 
 ### Admin
 - Only one admin account exists within the system.
