@@ -1,19 +1,13 @@
 <html>
     <head>
         {{>header}}
+        <link rel="stylesheet" href="/css/displayPantries.css">
     </head>
     <body>
-
-    <style>
-        body{
-            background-color: #3a5f5e;
-        }
-    </style>
-
         {{>pantryNav}}
+        <h1 class="title mt-5 mb-4 text-white">Donation Information</h1>
         {{#donations}}
-            <div class="container">
-                <h1 class="title mt-5 mb-4">Donation Information</h1>
+            <div class="container mb-4">   
                 <div class="card">
                     <div class="card-body">
                     <form action="/acceptDonation" method="POST">
@@ -26,14 +20,14 @@
                         <h5 class="card-title">Food Item: {{ foodName }}</h5>
                         <p class="card-text">Quantity: {{ quantity }}</p>
                         <p class="card-text">Expiration Date: {{ expiration }}</p>
-                        <button type="submit" class="btn btn-primary">Accept</a>
+                        <button type="submit" class="btn btn-primary accept">Accept</a>
                     </form>
                 </div>
             </div>
         </div>
         {{/donations}}
         {{^donations}}
-            <div class="container">
+            <div class="container mb-4">
                 <h1 class="mt-5 mb-4">Donation Information</h1>
                 <div class="card">
                     <div class="card-body">

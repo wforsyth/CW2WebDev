@@ -4,14 +4,17 @@
     </head>
     <body>
         {{>adminNav}}
-        <div class="container-fluid">
-            <div class="row mt-4">
-                <div class="col-md-6 bg-secondary text-white">
-                <h2>Left Side Content</h2>
-                <p>This is some text on the gray left side.</p>
+        <div class="container-fluid mt-4">
+            <div class="row">
+                <div class="col-md-6 bg-secondary text-white d-flex flex-column">
+                    <h1>Welcome {{admin.admin}}!</h1>
+                    <br>
+                    <h3>We are the voice for pantries.</h3>
+                    <br><br>
+                    <h4>Create or remove Pantries, or remove Users.</h4>
                 </div>
-            <div class="col-md-6">
-            <img src="{{imageUrl2}}" class="img-fluid" alt="Image">
+                <div class="col-md-6 d-flex">
+                    <img src="{{imageUrl2}}" class="img-fluid" alt="Image">
                 </div>
             </div>
         </div>

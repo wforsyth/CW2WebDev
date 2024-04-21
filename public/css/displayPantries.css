@@ -1,0 +1,20 @@
+body{
+    background-color: #3a5f5e;
+}
+.delete{
+    background-color: red;
+    border-color: black;
+}
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #3a5f5e;
+}
+.title{
+    margin-left: 3in;
+}
+.accept{
+    background-color: green;
+    border-color: black;
+}

@@ -1,22 +1,13 @@
 <html>
     <head>
         {{>header}}
+        <link rel="stylesheet" href="/css/displayPantries.css">
     </head>
     <body>
-
-    <style>
-        body{
-            background-color: #3a5f5e;
-        }
-        .btn{
-            background-color: red;
-        }
-    </style>
-
         {{>adminNav}}
+        <h1 class="title mt-5 mb-4 text-white">Pantries</h1>
         {{#pantry}}
-            <div class="container">
-                <h1 class="title mt-5 mb-4">Pantry Information</h1>
+            <div class="container mb-4">
                 <div class="card">
                     <div class="card-body">
                     <form action="/deletePantry" method="POST">
@@ -25,14 +16,14 @@
                         <input type="hidden" name="location" value="{{location}}">
                         <h2 class="card-title">Pantry: {{ pantry }}</h2>
                         <h2 class="card-title">Location: {{ location }}</h2>
-                        <button type="submit" class="btn btn-primary">Delete</a>
+                        <button type="submit" class="btn btn-primary delete">Delete</a>
                     </form>
                 </div>
             </div>
         </div>
         {{/pantry}}
         {{^pantry}}
-            <div class="container">
+            <div class="container mb-4">
                 <h1 class="mt-5 mb-4">Pantry Information</h1>
                 <div class="card">
                     <div class="card-body">
@@ -41,6 +32,8 @@
                 </div>
             </div>
         {{/pantry}}
-        <a href="/createPantryPage" class="btn btn-primary">Create Pantry</a>
+        <div class="center">
+            <a href="/createPantryPage" class="btn btn-primary">Create Pantry</a>
+        </div>
     </body>
 </html>
