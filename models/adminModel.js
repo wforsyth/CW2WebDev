@@ -13,6 +13,7 @@ class AdminDAO {
         }
     }
 
+    //initiates admin
     init(){
         this.db.insert({
             admin: 'Admin',
@@ -21,6 +22,7 @@ class AdminDAO {
         })
     }
     
+    //searches for admin in database
     lookup(admin, cb){
         this.db.find({'admin': admin}, function (err, entries){
             if (err){

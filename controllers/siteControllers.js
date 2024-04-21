@@ -3,8 +3,7 @@ const userDao = require('../models/userModel.js');
 const donationDao = require('../models/donationModel.js');
 const auth = require("../auth/auth.js")
 
-
-//Methods for showing new mustache templates
+//renders home page
 exports.landing_page = function (req, res) {
     res.render('home', {
         imageUrl: path.join('img', 'pantryLogo.jpg'),
@@ -12,18 +11,21 @@ exports.landing_page = function (req, res) {
     });
 };
 
+//renders login page
 exports.show_login_page = function (req, res) {
     res.render('user/login', {
         imageUrl: path.join('img', 'pantryLogo.jpg'),
     });
 };
 
+//renders register page
 exports.show_register_page = function (req, res) {
     res.render('user/register', {
         imageUrl: path.join('img', 'pantryLogo.jpg'),
     });
 };
 
+//renders donate page
 exports.show_donation_page = function (req, res) {
     const user = req.user;
 
@@ -33,6 +35,7 @@ exports.show_donation_page = function (req, res) {
     });
 }
 
+//renders about page
 exports.show_about_page = function (req, res) {
     res.render('aboutUs', {
         imageUrl: path.join('img', 'pantryLogo.jpg'),
@@ -40,6 +43,7 @@ exports.show_about_page = function (req, res) {
     });
 }
 
+//renders about page when user logged in
 exports.show_userabout_page = function (req, res) {
     const user = req.user;
 
@@ -50,6 +54,7 @@ exports.show_userabout_page = function (req, res) {
     });
 }
 
+//renders contact page when user logged in
 exports.show_usercontact_page = function (req, res) {
     const user = req.user;
 
@@ -60,6 +65,7 @@ exports.show_usercontact_page = function (req, res) {
     });
 }
 
+//renders contact page
 exports.show_contact_page = function (req, res) {
     res.render('contactUs', {
         imageUrl: path.join('img', 'pantryLogo.jpg'),
@@ -67,6 +73,7 @@ exports.show_contact_page = function (req, res) {
     });
 }
 
+//renders home page when user logged in
 exports.show_userhome = function (req, res) {
     const user = req.user;
 
@@ -77,7 +84,7 @@ exports.show_userhome = function (req, res) {
     });
 }
 
-//Methods for confirming user registration and login
+//confirms user registration and renders login page
 exports.register_user = function (req, res) {
     if (!req.body || !req.body.username) {
         res.status(400).send('Username is required');
@@ -111,6 +118,7 @@ exports.register_user = function (req, res) {
     });
 }
 
+//handles user login and renders relevant page
 exports.handle_login = function (req, res) {
 
     const user = req.user;
@@ -138,8 +146,7 @@ exports.handle_login = function (req, res) {
     }
 }
 
-//methods to handle donations
-
+//adds donation to donation model 
 exports.handle_donation = function (req, res) {
     const user = req.user;
     const foodName = req.body.food;
@@ -159,6 +166,7 @@ exports.handle_donation = function (req, res) {
     });
 }
 
+//logs out user
 exports.logout = function (req, res) {
     res
         .clearCookie("jwt")

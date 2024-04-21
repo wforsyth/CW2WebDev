@@ -10,6 +10,7 @@ class InventoryDAO {
         }
     }
 
+    //initiates test inventory
     init() {
         this.db.insert({
             pantry: 'Govan',
@@ -19,7 +20,7 @@ class InventoryDAO {
         });
     }
 
-    //a function to return all entries from the database
+    //function to return all inventory from database
     getAllInventory() {
         return new Promise((resolve, reject) => {
             this.db.find({}, function (err, inventory) {
@@ -33,6 +34,7 @@ class InventoryDAO {
         });
     }
 
+    //function to add inventory to database
     addInventory(pantry, food, quantity, expiration) {
         var inventory = {
             pantry: pantry,
@@ -51,6 +53,7 @@ class InventoryDAO {
         });
     }
 
+    //function to remove inventore from database based on ID
     removeInventory(inventoryId){
         this.db.remove({ '_id': inventoryId}, {}, (err) => {
             if (err){
@@ -60,6 +63,7 @@ class InventoryDAO {
         });
     }
 
+    //function to get inventory from database based on pantry name
     getInventoryByPantry(pantry){
         return new Promise((resolve, reject) => {
             this.db.find({'pantry': pantry}, function (err, inventory) {

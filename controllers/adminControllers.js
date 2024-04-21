@@ -4,6 +4,7 @@ const userDao = require('../models/userModel.js');
 const pantryDao = require('../models/pantryModel.js');
 const auth = require("../auth/auth.js");
 
+//renders the admin homepage
 exports.show_adminhome_page = function (req, res) {
     const admin = req.admin;
 
@@ -14,6 +15,7 @@ exports.show_adminhome_page = function (req, res) {
     })
 }
 
+//renders the users page
 exports.show_users_page = function (req, res) {
     const admin = req.admin;
 
@@ -29,6 +31,7 @@ exports.show_users_page = function (req, res) {
     })
 }
 
+//renders the admin pantires page
 exports.show_pantries_page = function (req, res) {
     const admin = req.admin;
 
@@ -44,6 +47,7 @@ exports.show_pantries_page = function (req, res) {
     })
 }
 
+//shows register pantry page
 exports.show_createpantry_page = function (req, res){
     const admin = req.admin;
 
@@ -53,6 +57,7 @@ exports.show_createpantry_page = function (req, res){
     });
 }
 
+//adds new pantry to database
 exports.register_pantry = function (req, res) {
     if (!req.body || !req.body.pantryName) {
         res.status(400).send('Username is required');
@@ -88,6 +93,7 @@ exports.register_pantry = function (req, res) {
     });
 }
 
+//deletes user from database
 exports.delete_user = function (req, res){
     const userId = req.body.userId;
 
@@ -96,6 +102,7 @@ exports.delete_user = function (req, res){
     exports.show_users_page(req, res);
 }
 
+//deletes pantry from database
 exports.delete_pantry = function (req, res){
     const pantryId = req.body.pantryId;
 
@@ -104,6 +111,7 @@ exports.delete_pantry = function (req, res){
     exports.show_pantries_page(req, res);
 }
 
+//logs out admin
 exports.logout = function (req, res) {
     res
         .clearCookie("jwt")

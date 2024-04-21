@@ -13,8 +13,8 @@ class UserDAO {
         }
     }
 
+    //initiates test user
     init(){
-        //user
         this.db.insert({
             user: 'test',
             password: '$2b$10$I82WRFuGghOMjtu3LLZW9OAMrmYOlMZjEEkh.vx.K2MM05iu5hY2C',
@@ -23,6 +23,7 @@ class UserDAO {
         })
     }
 
+    //function to create user
     create(username, password, role, location){
         const that = this;
         bcrypt.hash(password, saltRounds).then(function(hash){
@@ -36,6 +37,7 @@ class UserDAO {
         });
     } 
     
+    //function to search for user
     lookup(user, cb){
         this.db.find({'user': user}, function (err, donations){
             if (err){
@@ -48,6 +50,7 @@ class UserDAO {
         });
     }
 
+    //function to delete user based on ID
     delete(userId){
         this.db.remove({'_id': userId}, function (err){
             if(err){
@@ -57,6 +60,7 @@ class UserDAO {
         })
     }
 
+    //function to get all users from database
     getAllUsers() {
         return new Promise((resolve, reject) => {
             this.db.find({}, function (err, user) {

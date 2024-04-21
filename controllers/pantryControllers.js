@@ -5,6 +5,7 @@ const donationDao = require('../models/donationModel.js');
 const inventoryDao = require('../models/inventoryModel.js');
 const auth = require("../auth/auth.js");
 
+//shows pantry donations page
 exports.show_donations_page = function (req, res) {
     const pantry = req.pantry;
     console.log(pantry._id);
@@ -21,6 +22,7 @@ exports.show_donations_page = function (req, res) {
     })
 }
 
+//shows pantry home page
 exports.show_pantryhome_page = function (req, res) {
     const pantry = req.pantry;
 
@@ -31,6 +33,7 @@ exports.show_pantryhome_page = function (req, res) {
     })
 }
 
+//adds donation to database
 exports.accept_donation = function (req, res) {
     var pantry = req.pantry;
     var donationId = req.body.donationId;
@@ -45,6 +48,7 @@ exports.accept_donation = function (req, res) {
     exports.show_donations_page(req, res); 
 };
 
+//shows pantry inventory page
 exports.show_inventory_page = function (req, res){
     const pantry = req.pantry;
     
@@ -60,6 +64,7 @@ exports.show_inventory_page = function (req, res){
     })
 }
 
+//deletes inventory from database
 exports.delete_inventory = function (req, res){
     const inventoryId = req.body.inventoryId;
 
@@ -68,6 +73,7 @@ exports.delete_inventory = function (req, res){
     exports.show_inventory_page(req, res);
 }
 
+//logs out pantry
 exports.logout = function (req, res) {
     res
         .clearCookie("jwt")

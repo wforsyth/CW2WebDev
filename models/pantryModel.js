@@ -93,52 +93,6 @@ class PantryDAO {
         });
     }
 
-    /*receiveDonation(food, quantity, expiration, pantryId) {
-
-        var donation = {
-            food: food,
-            quantity: quantity,
-            expiration: expiration
-        }
-
-        this.db.update({ '_id': pantryId }, { $push: { 'inventory': donation } }, {}, function (err) {
-            if (err) {
-                console.log('Error receiving donation', err);
-            } else {
-                console.log('Pantry inventory successfully updated with donation:', donation);
-            }
-        });
-    }*/
-
-    /*receiveDonation(food, quantity, expiration, pantryId, callback){
-        var donation={
-            food: food,
-            quantity: quantity,
-            expiration: expiration
-        }
-        this.db.update({'_id': pantryId},{$push: {'inventory': donation}}, function(err){
-            if (err) {
-                console.log('Error updating inventory');
-                callback(err);
-            } else{
-                console.log("pantry inventory updated with: ", donation);
-                callback(null);
-            }  
-        })
-    }*/
-
-    receiveDonation(donation, pantryId, callback){
-        this.db.update({'_id': pantryId},{$set: {'inventory': donation}}, function(err){
-            if (err) {
-                console.log('Error updating inventory');
-                callback(err);
-            } else{
-                console.log("pantry inventory updated with: ", donation);
-                callback(null);
-            }  
-        })
-    }
-
     getAllPantries() {
         return new Promise((resolve, reject) => {
             this.db.find({}, function (err, pantry) {

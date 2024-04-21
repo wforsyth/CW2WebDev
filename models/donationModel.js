@@ -10,6 +10,7 @@ class DonationDAO {
         }
     }
 
+    //initiates test donation
     init() {
         this.db.insert({
             user: 'test',
@@ -22,7 +23,7 @@ class DonationDAO {
         console.log('Information added to database');
     }
 
-    //a function to return all entries from the database
+    //function to return all donations from the database
     getAllDonations() {
         return new Promise((resolve, reject) => {
             this.db.find({}, function (err, donations) {
@@ -36,6 +37,7 @@ class DonationDAO {
         });
     }
 
+    //function to get donation from database based on its ID
     getDonationById(donationId){
         return new Promise((resolve, reject) =>{
             this.db.find({_id: donationId}, function (err, donation){
@@ -49,6 +51,7 @@ class DonationDAO {
         })
     }
 
+    //function to add donation to database
     addDonation(user, location, foodName, quantity, expiration) {
 
         var donation = {
@@ -68,6 +71,7 @@ class DonationDAO {
         });
     }
 
+    //function to remove donation from database based on ID
     removeDonation(donationId){
         this.db.remove({ '_id': donationId}, {}, (err) => {
             if (err){

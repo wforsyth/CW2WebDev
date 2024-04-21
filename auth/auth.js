@@ -4,10 +4,12 @@ const pantryModel = require('../models/pantryModel.js');
 const adminModel = require('../models/adminModel.js');
 const jwt = require("jsonwebtoken");
 
+//method to log in user
 exports.login = function (req, res, next) {
     let username = req.body.username;
     let password = req.body.password;
 
+    //checks for user information and logs in
     userModel.lookup(username, function (err, user) {
         if (err) {
             console.log("error looking up user", err);
@@ -19,15 +21,13 @@ exports.login = function (req, res, next) {
                     let accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_USER);
                     res.cookie("jwt", accessToken);
 
-                    //console.log("JWT token generated for user:", user)
-                    //console.log(payload);
-
                     //and then pass onto the next middleware
                     req.user = user;
                     next();
                 }
             });
         } else {
+            //checks for pantry information and logs in
             pantryModel.lookup(username, function (err, pantry) {
                 if (err) {
                     console.log("error looking up pantry", err);
@@ -39,15 +39,13 @@ exports.login = function (req, res, next) {
                             let accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_PANTRY);
                             res.cookie("jwt", accessToken);
 
-                            //console.log("JWT token generated for pantry:", pantry)
-                            //console.log(payload);
-
                             //and then pass onto the next middleware
                             req.pantry = pantry;
                             next();
                         }
                     });
                 } else {
+                    //checks for admin information and logs in
                     adminModel.lookup(username, function (err, admin) {
                         if (err) {
                             console.log("error looking up admin", err);
@@ -58,9 +56,6 @@ exports.login = function (req, res, next) {
                                     let payload = { admin: admin };
                                     let accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_ADMIN);
                                     res.cookie("jwt", accessToken);
-
-                                    //console.log("JWT token generated for admin:", admin)
-                                    //console.log(payload);
 
                                     //and then pass onto the next middleware
                                     req.admin = admin;
@@ -75,7 +70,7 @@ exports.login = function (req, res, next) {
     });
 }
 
-
+//verifies if user is logged in
 exports.verify = function (req, res, next) {
     let accessToken = req.cookies.jwt;
     if (!accessToken) {
@@ -94,6 +89,7 @@ exports.verify = function (req, res, next) {
     }
 };
 
+//verifies if pantry is logged in
 exports.verifyPantry = function (req, res, next) {
     let accessToken = req.cookies.jwt;
     if (!accessToken) {
@@ -112,6 +108,7 @@ exports.verifyPantry = function (req, res, next) {
     }
 };
 
+//verifies if admin is logged in
 exports.verifyAdmin = function (req, res, next) {
     let accessToken = req.cookies.jwt;
     if (!accessToken) {
@@ -120,12 +117,10 @@ exports.verifyAdmin = function (req, res, next) {
     let payload;
     try {
         payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_ADMIN);
-        //console.log(payload.admin);
 
         req.admin = payload.admin;
         next();
     } catch (e) {
-        //if an error occured return request unauthorized error
         res.status(401).send();
     }
 };
