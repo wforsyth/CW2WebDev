@@ -20,7 +20,6 @@ class PantryDAO {
             password: '$2a$10$REC78a99bqYwmsujHgC10uRZTyCmc6BdJ2Y5iXHHoVJNbqy/FozfC',
             location: 'Govan, Glasgow',
             role: 'Pantry',
-            inventory: []
         })
 
         //pantry
@@ -29,8 +28,7 @@ class PantryDAO {
             password: '$2a$10$V/hJq2jGHhLJR.4m89y8PuBKu.8C3BvZBo9P2CoHLaYtQvJebCmUm',
             location: 'Hillhead, Glasgow',
             role: 'Pantry',
-            inventory: []
-        })
+        });
 
     }
 
@@ -68,7 +66,7 @@ class PantryDAO {
         });
     }
 
-    receiveDonation(food, quantity, expiration, pantryId, callback) {
+    /*receiveDonation(food, quantity, expiration, pantryId) {
 
         var donation = {
             food: food,
@@ -76,15 +74,42 @@ class PantryDAO {
             expiration: expiration
         }
 
-        this.db.update({ '_id': pantryId }, { $set: { 'inventory': donation } }, {}, function (err) {
+        this.db.update({ '_id': pantryId }, { $push: { 'inventory': donation } }, {}, function (err) {
             if (err) {
                 console.log('Error receiving donation', err);
-                callback(err);
             } else {
                 console.log('Pantry inventory successfully updated with donation:', donation);
-                callback(null);
             }
         });
+    }*/
+
+    /*receiveDonation(food, quantity, expiration, pantryId, callback){
+        var donation={
+            food: food,
+            quantity: quantity,
+            expiration: expiration
+        }
+        this.db.update({'_id': pantryId},{$push: {'inventory': donation}}, function(err){
+            if (err) {
+                console.log('Error updating inventory');
+                callback(err);
+            } else{
+                console.log("pantry inventory updated with: ", donation);
+                callback(null);
+            }  
+        })
+    }*/
+
+    receiveDonation(donation, pantryId, callback){
+        this.db.update({'_id': pantryId},{$set: {'inventory': donation}}, function(err){
+            if (err) {
+                console.log('Error updating inventory');
+                callback(err);
+            } else{
+                console.log("pantry inventory updated with: ", donation);
+                callback(null);
+            }  
+        })
     }
 
     getAllPantries() {
